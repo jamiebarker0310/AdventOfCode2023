@@ -90,8 +90,6 @@ def part_one(file_path: str):
 
 def get_star_adjacent_numbers(line: str, i: int, star_grid: dict):
 
-    total = 0
-
     j = 0
     number = ""
     indices = []
