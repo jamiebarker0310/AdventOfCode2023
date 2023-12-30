@@ -36,7 +36,8 @@ def parse_game_2(line: str) -> int:
 
 
 def part_one(file_path: str):
-    """[summary]
+    """
+    sums the possible game ids
 
     Args:
         file_path (str): [description]
@@ -53,7 +54,9 @@ def part_one(file_path: str):
 
 
 def part_two(file_path: str):
-    """[summary]
+    """
+    gets the product of the minimal number of ball in each game and returns
+    the sum
 
     Args:
         file_path (str): [description]
