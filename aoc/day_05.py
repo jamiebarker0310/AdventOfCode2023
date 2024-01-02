@@ -146,8 +146,6 @@ def part_two(file_path: str):
     ]
     seeds = [(seeds[i], seeds[i] + seeds[i + 1]) for i in range(0, len(seeds), 2)]
 
-    original_lengths = compute_lengths(seeds)
-
     changed_seeds = []
     unchanged_seeds = []
 

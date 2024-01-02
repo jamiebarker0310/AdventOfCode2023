@@ -1,7 +1,6 @@
 from aoc.day_05 import part_one, part_two, condition, split_range
-import pytest
 
-# @pytest.mark.parametrize()
+
 def test_condition():
 
     assert condition(53, False, 49, 53, 8) == (49, True)
