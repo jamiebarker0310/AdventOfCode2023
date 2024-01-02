@@ -118,7 +118,7 @@ def split_range(xmin, xmax, dest, source, length) -> tuple:
 
 def compute_lengths(seeds):
 
-    return sum(map(lambda a,b: b-a, seeds))
+    return sum([b-a for a,b in seeds])
 
 def part_two(file_path: str):
     """[summary]
@@ -136,6 +136,8 @@ def part_two(file_path: str):
     seeds = lines[0]
     seeds = [int(x.strip()) for x in seeds[seeds.index(": ") + 1:].split(" ") if len(x)>0]
     seeds = [(seeds[i], seeds[i]+seeds[i+1]) for i in range(0, len(seeds), 2)]
+
+    original_lengths = compute_lengths(seeds)
 
     changed_seeds = []
     unchanged_seeds = []
@@ -164,8 +166,12 @@ def part_two(file_path: str):
             seeds = seeds + changed_seeds
             unchanged_seeds = []
             changed_seeds = []
-            print("-"*40, sorted(seeds), "-"*40)
         
+    
+    seeds = seeds + changed_seeds
+    unchanged_seeds = []
+    changed_seeds = []
+    
     return min(seeds)[0]
 
 

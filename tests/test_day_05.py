@@ -19,8 +19,6 @@ def test_part_two():
 
     assert part_two(test_file_path) == 46
 
-    assert False
-
 def test_split_range():
 
     changed, unchanged =  split_range(57, 70, 49, 53, 8)
