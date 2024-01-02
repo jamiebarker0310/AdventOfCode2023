@@ -1,11 +1,12 @@
-def condition(x, changed, dest, source, length ):
+def condition(x, changed, dest, source, length):
     if changed:
         return x, True
     elif x - source < length and x >= source:
         return x - source + dest, True
     else:
         return x, False
-    
+
+
 def apply_mappings(maps, seeds):
 
     # and we have mapping functions
@@ -25,8 +26,9 @@ def apply_mappings(maps, seeds):
             new_seeds.append(seed)
         # set the seeds to the new seeds
         seeds = new_seeds
-    
+
     return seeds
+
 
 def part_one(file_path: str):
     """[summary]
@@ -41,17 +43,19 @@ def part_one(file_path: str):
     # read file
     with open(file_path) as f:
         lines = f.readlines()
-    
+
     seeds = lines[0]
-    seeds = [int(x.strip()) for x in seeds[seeds.index(": ") + 1:].split(" ") if len(x)>0]
+    seeds = [
+        int(x.strip()) for x in seeds[seeds.index(": ") + 1 :].split(" ") if len(x) > 0
+    ]
     maps = []
     for i in range(1, len(lines)):
         # if it's an empty line
         if len(lines[i].strip()) == 0:
             seeds = apply_mappings(maps, seeds)
-            # initialise 
+            # initialise
             maps = []
-            
+
         elif len(lines[i].split(" ")) == 3:
             dest, source, length = map(int, lines[i].split(" "))
             maps.append((dest, source, length))
@@ -59,6 +63,7 @@ def part_one(file_path: str):
     seeds = apply_mappings(maps, seeds)
 
     return min(seeds)
+
 
 def split_range(xmin, xmax, dest, source, length) -> tuple:
 
@@ -69,7 +74,7 @@ def split_range(xmin, xmax, dest, source, length) -> tuple:
             # none are changed
             changed = ()
             unchanged = ((xmin, xmax),)
-        # if xmax is greater than source and leq 
+        # if xmax is greater than source and leq
         elif xmax > source and xmax <= source + length:
             changed = ((dest, dest + xmax - source),)
             unchanged = ((xmin, source),)
@@ -95,7 +100,7 @@ def split_range(xmin, xmax, dest, source, length) -> tuple:
             changed = ((xmin + dest - source, dest + length),)
             # the top of source length to xmax remains unchanged
             unchanged = ((source + length, xmax),)
-        
+
         else:
             raise ValueError("RUHROH")
 
@@ -106,7 +111,7 @@ def split_range(xmin, xmax, dest, source, length) -> tuple:
             # nothing is changed
             changed = ()
             # xmin and xmax are unchanged
-            unchanged =  ((xmin, xmax),)
+            unchanged = ((xmin, xmax),)
 
         else:
             raise ValueError("RUHROH")
@@ -116,9 +121,11 @@ def split_range(xmin, xmax, dest, source, length) -> tuple:
 
     return changed, unchanged
 
+
 def compute_lengths(seeds):
 
-    return sum([b-a for a,b in seeds])
+    return sum([b - a for a, b in seeds])
+
 
 def part_two(file_path: str):
     """[summary]
@@ -132,10 +139,12 @@ def part_two(file_path: str):
 
     with open(file_path) as f:
         lines = f.readlines()
-    
+
     seeds = lines[0]
-    seeds = [int(x.strip()) for x in seeds[seeds.index(": ") + 1:].split(" ") if len(x)>0]
-    seeds = [(seeds[i], seeds[i]+seeds[i+1]) for i in range(0, len(seeds), 2)]
+    seeds = [
+        int(x.strip()) for x in seeds[seeds.index(": ") + 1 :].split(" ") if len(x) > 0
+    ]
+    seeds = [(seeds[i], seeds[i] + seeds[i + 1]) for i in range(0, len(seeds), 2)]
 
     original_lengths = compute_lengths(seeds)
 
@@ -166,12 +175,11 @@ def part_two(file_path: str):
             seeds = seeds + changed_seeds
             unchanged_seeds = []
             changed_seeds = []
-        
-    
+
     seeds = seeds + changed_seeds
     unchanged_seeds = []
     changed_seeds = []
-    
+
     return min(seeds)[0]
 
 
