@@ -1,9 +1,8 @@
 from collections import Counter
 
 
-def parse_hand(hand, joker=False):
+def calculate_sizes(hand_counter: Counter, joker=False):
 
-    hand_counter = Counter(hand)
     if joker:
         joker_count = hand_counter[1]
         hand_counter_len = len(hand_counter)
@@ -13,6 +12,14 @@ def parse_hand(hand, joker=False):
     else:
         hand_counter_len = len(hand_counter)
         joker_count = 0
+
+    return hand_counter_len, joker_count
+
+
+def parse_hand(hand, joker=False):
+
+    hand_counter = Counter(hand)
+    hand_counter_len, joker_count = calculate_sizes(hand_counter, joker=joker)
 
     if hand_counter_len == 5:
         # high card
@@ -40,7 +47,6 @@ def parse_hand(hand, joker=False):
     elif hand_counter_len == 1:
         # five of a kind
         return [6] + hand
-
 
 
 def parse_line(line: str, joker=False):
