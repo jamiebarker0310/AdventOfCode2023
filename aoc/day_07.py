@@ -29,8 +29,6 @@ def parse_hand(hand, joker=False):
             # 3 of a kind
             return [3] + hand
 
-        else:
-            raise ValueError()
     elif hand_counter_len == 2:
         if max(hand_counter.values()) + joker_count == 3:
             # full house
@@ -38,13 +36,11 @@ def parse_hand(hand, joker=False):
         elif max(hand_counter.values()) + joker_count in (4, 6):
             # four of a kind
             return [5] + hand
-        else:
-            raise ValueError()
+
     elif hand_counter_len == 1:
         # five of a kind
         return [6] + hand
-    else:
-        raise ValueError()
+
 
 
 def parse_line(line: str, joker=False):
