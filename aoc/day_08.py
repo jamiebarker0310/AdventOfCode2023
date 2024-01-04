@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def part_one(file_path: str):
     """[summary]
 
@@ -14,14 +15,14 @@ def part_one(file_path: str):
     with open(file_path) as f:
         lines = f.readlines()
 
-    directions = list(map(lambda x: int(x=="R"), lines[0].strip()))
+    directions = list(map(lambda x: int(x == "R"), lines[0].strip()))
 
     nodes = {line[:3]: (line[7:10], line[12:15]) for line in lines[2:]}
 
     i = 0
     node = "AAA"
-    while node!="ZZZ":
-        node = nodes[node][directions[i%len(directions)]]
+    while node != "ZZZ":
+        node = nodes[node][directions[i % len(directions)]]
         i += 1
     return i
 
@@ -38,16 +39,16 @@ def part_two(file_path: str):
 
     with open(file_path) as f:
         lines = f.readlines()
-    
+
     nodes = {line[:3]: [line[7:10], line[12:15]] for line in lines[2:]}
-    directions = list(map(lambda x: int(x=="R"), lines[0].strip()))
+    directions = list(map(lambda x: int(x == "R"), lines[0].strip()))
 
     starting_nodes = [node for node in nodes.keys() if node[-1] == "A"]
     lcms = []
     for node in starting_nodes:
         i = 0
-        while node[-1]!="Z":
-            node = nodes[node][directions[i%len(directions)]]
+        while node[-1] != "Z":
+            node = nodes[node][directions[i % len(directions)]]
             i += 1
         lcms.append(i)
 
