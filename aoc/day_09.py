@@ -1,6 +1,3 @@
-import numpy as np
-
-
 def predict_next(line: str, reverse=False):
 
     y = list(map(int, line.strip().split(" ")))
