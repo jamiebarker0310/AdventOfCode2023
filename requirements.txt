@@ -8,6 +8,7 @@ cycler==0.11.0
 decorator==5.1.0
 flake8==4.0.1
 fonttools==4.28.3
+importlib-metadata==4.2.0
 iniconfig==1.1.1
 ipython==7.30.1
 isort==5.10.1
@@ -42,13 +43,16 @@ pytest==6.2.5
 python-dateutil==2.8.2
 pytz==2021.3
 regex==2021.11.10
+scipy==1.7.3
 seaborn==0.12.1
 setuptools-scm==6.3.2
 six==1.16.0
 toml==0.10.2
 tomli==1.2.2
-traitlets==5.1.1
-typing_extensions==4.0.1
 tqdm==4.64.1
+traitlets==5.1.1
+typed-ast==1.5.5
+typing_extensions==4.0.1
 wcwidth==0.2.5
 wrapt==1.13.3
+zipp==3.15.0
